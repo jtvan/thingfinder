@@ -1,7 +1,7 @@
 <html>
 <head>
 	<link rel="shortcut icon" href="favi.png" />
-	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="w3.css">
 	<header>
 		<title>Thing Finder Preview</title> 
 	</header>
@@ -43,10 +43,10 @@
 </head> 
 
 	<t1>Thing Finder Demo Page</t1>
-	<form action="userTerminal/login.html" method="post">
+	<form action="userTerminal/login.php" method="post">
 		<input type="submit" value="Preview User Terminal">
 	</form>
-	<form action="phoneApp/login.html" method="post">
+	<form action="phoneApp/login.php method="post">
 		<input type="submit" value="Preview Phone App">
 	</form>
 </html>

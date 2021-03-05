@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="w3.css">
 </head>
 <body>
-	<form action="scan.html" method="get">
+	<form action="scan.php" method="get">
 		<p1>Please select a tracking type</p1>
 		<br>
 		<input type="radio" id="RFID" name="rfid" value="male">

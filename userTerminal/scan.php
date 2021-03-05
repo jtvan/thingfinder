@@ -5,7 +5,7 @@
 </head>
 <body>
 scan item ui goes here
-<form action="startScreen.html" method="get">
+<form action="startScreen.php" method="get">
 	<button type="submit">Back</button>
 </form>
 </body>

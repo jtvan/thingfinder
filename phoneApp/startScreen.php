@@ -9,20 +9,20 @@
 	<br>
 	<br>
 	
-	<form action="login.html" method="get">
+	<form action="login.php" method="get">
 		<button type="submit">Logout</button>
 	</form>
-	<form action="menu.html" method="get">
+	<form action="menu.php" method="get">
 		<button type="submit">Menu</button>
 	</form>
-	<form action="notifications.html" method="get">
+	<form action="notifications.php" method="get">
 		<button type="submit">Notifications</button>
 	</form>
 	
 	<br><br>
 	<p2>Please select an item:<p2>
 	<br>
-	<form action="trackingInterface.html" method="get">
+	<form action="trackingInterface.php" method="get">
 	  <select name="ParticipantList">
 	    <option value="hi">Hello</option>
 	    <option value="hi2">Hello2</option>

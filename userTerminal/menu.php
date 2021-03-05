@@ -8,7 +8,7 @@
 		<br><br>
 		System settigns list goes here. Options about privacy and such.
 		
-	<form action="startScreen.html" method="get">
+	<form action="startScreen.php" method="get">
 		<button type="submit">Back</button>
 	</form>
 </body>

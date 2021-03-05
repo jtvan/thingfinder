@@ -3,10 +3,11 @@
 	<head>
 		<link rel="stylesheet" href="w3.css">
 	</head>
+	
 	<body>
-	notifications go here. Along the lines of "new update" etc
+	menu options go here
 
-		<form action="startScreen.html" method="get">
+		<form action="startScreen.php" method="get">
 			<button type="submit">back</button>
 		</form>
 		
