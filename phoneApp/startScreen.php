@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<link rel="stylesheet" href="w3.css">
-	</head>
+<head>
+	<link rel="stylesheet" href="w3.css">
+</head>
+	
 <body>
-	<p1>Welcome Username!</p1>
-	<br>
-	<br>
+	<h4>Welcome Username!</h4>
 	<br>
 	
 	<form action="login.php" method="get">
@@ -22,14 +21,23 @@
 	<br><br>
 	<p2>Please select an item:<p2>
 	<br>
-	<form action="trackingInterface.php" method="get">
-	  <select name="ParticipantList">
-	    <option value="hi">Hello</option>
-	    <option value="hi2">Hello2</option>
-	    <option value="hi3">Hello3</option>
-	  </select>
+	<select name="itemList" size="10">
+		<option value="item1">Item 1</option>
+		<option value="item2">Item 2</option>
+		<option value="item3">Item 3</option>
+	</select>
+	<?php
+		// Open the file
+		// $filename = "../itemList.txt";
+		// $fp = @fopen($filename, 'r'); 
 
-	  <input type="submit">
+		// Add each line to an array
+		// if ($fp) {
+		// $array = explode("\n", fread($fp, filesize($filename)));
+		// }
+	?>
+	<form action="trackingInterface.php" method="get">
+		<input type="submit">
 	</form>
 
 	</form>

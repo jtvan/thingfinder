@@ -12,4 +12,8 @@
 		<input type="text" id="Password" name="Password" value=""><br><br>
 		<input type="submit" value="Login">
 	</form>
+	<br><br>
+	<form action ="../index.php" method="get">
+		<input type="submit" value ="Return to demo start page">
+	</form>
 </html>
