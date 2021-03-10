@@ -4,7 +4,7 @@
 		<link rel="stylesheet" href="w3.css">
 	</head>
 	
-	<t1>Welcome to Thing Finder Mobile!</t1>
+	<h2>Welcome to Thing Finder Mobile!</h2>
 	<form action="startScreen.php" method="post">
 		<label for="username">Username:</label><br>
 		<input type="text" id="username" name="username" value=""><br>

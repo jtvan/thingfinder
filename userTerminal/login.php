@@ -7,7 +7,7 @@
 		<title>Thing Finder Preview</title> 
 	</header>
 </head> 
-	<t1>Welcome to Thing Finder!</t1>
+	<h2>Welcome to the Thing Finder User Terminal!</h2>
 	<form action="startScreen.php" method="post">
 		<label for="username">Username:</label><br>
 		<input type="text" id="username" name="username" value=""><br>

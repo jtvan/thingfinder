@@ -14,7 +14,7 @@
 	<br><br>
 	
 	<h4>This is an executable demo for the functionality of the thing finder system.<br>
-	Usernames and passwords can be left blank for the purposes of the demo.<br>
+	Usernames and passwords can be left blank for the purposes of the demo. At this time, nothing is mutable, including add/remove item.<br>
 	Please select a section of the project you would like to explore from the options below:<h4>
 	<br>
 	<br>

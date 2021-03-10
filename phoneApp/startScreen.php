@@ -17,27 +17,32 @@
 	<form action="notifications.php" method="get">
 		<button type="submit">Notifications</button>
 	</form>
+	<form action="camerafeed.php" method="get">
+		<button type="submit">Camera Feed</button>
+	</form>
 	
 	<br><br>
+	
 	<p2>Please select an item:<p2>
 	<br>
-	<select name="itemList" size="10">
-		<option value="item1">Item 1</option>
-		<option value="item2">Item 2</option>
-		<option value="item3">Item 3</option>
-	</select>
-	<?php
-		// Open the file
-		// $filename = "../itemList.txt";
-		// $fp = @fopen($filename, 'r'); 
+	<form action="trackingInterface.php" method="POST">
+		<select name="itemName" size="10">
+			<?php
+				//TODO get item list dynamically
+				$file = fopen("../itemList.txt","r");
+				while(! feof($file))
+				{
+					$current = fgets($file);
+					echo "<option value=\"" . $current . "\">" . $current . "</option>";
+				}
 
-		// Add each line to an array
-		// if ($fp) {
-		// $array = explode("\n", fread($fp, filesize($filename)));
-		// }
-	?>
-	<form action="trackingInterface.php" method="get">
-		<input type="submit">
+				fclose($file);
+			?>
+		</select>
+		<br>
+
+
+		<button type="submit">Find Item</button>
 	</form>
 
 	</form>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" href="w3.css">
+	<link rel="stylesheet" href="w3.css">
 </head>
 <body>
 	<h4>Please Select an action.</h4>
