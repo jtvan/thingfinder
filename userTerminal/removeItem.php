@@ -22,10 +22,18 @@
 		}
 	</script>
 
-	<select name="itemList" size="10">
-		<option value="item1">Item 1</option>
-		<option value="item2">Item 2</option>
-		<option value="item3">Item 3</option>
+	<select name="itemName" size="10">
+		<?php
+			//TODO get item list dynamically
+			$file = fopen("../itemList.txt","r");
+			while(! feof($file))
+			{
+				$current = fgets($file);
+				echo "<option value=\"" . $current . "\">" . $current . "</option>";
+			}
+
+			fclose($file);
+		?>
 	</select>
 	<br>
 	<br>
