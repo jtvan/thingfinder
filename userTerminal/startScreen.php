@@ -22,8 +22,8 @@
 		<button type="submit">Add a New Item</button>
 	</form>
 	
-	<form action="removeItem.php" method="get">
-		<button type="submit">Remove a Tracked Item</button>
+	<form action="modifyItem.php" method="get">
+		<button type="submit">Modify an Item</button>
 	</form>
 	
 	<form action="addUser.php" method="get">

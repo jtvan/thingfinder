@@ -5,7 +5,7 @@
 </head>
 <body>
 
-	<t1>Please enter new user credentials.</t1>
+	<h4>Please enter new user credentials.</h4>
 	<form action="startScreen.php" method="post">
 		<label for="username">Username:</label><br>
 		<input type="text" id="username" name="username" value=""><br><br>

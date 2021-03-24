@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="w3.css">
 </head>
 <body>
-	<h4>Item removed.</h4>
+	<h4>Item renamed.</h4>
 	<form action="modifyItem.php" method="get">
 		<button type="submit">Back</button>
 	</form>
@@ -21,6 +21,7 @@
 		
 		if(isset($_POST["submit"])){
 			$itemName = $_POST["itemName"];
+			$newName = $_POST["newName"];
 			
 			$file = fopen($itemListPath,"r");
 
@@ -31,14 +32,17 @@
 			}
 			fclose($file);
 			
-			$contents = file_get_contents($itemListPath);
-			$contents = str_replace($itemName, '', $contents);
-			file_put_contents($itemListPath, $contents);
+
 			
 			
 			if ($itemExists == false){
 				echo "Error, item doesn't exist.";
 					
+			}
+			else{	
+				$contents = file_get_contents($itemListPath);
+				$contents = str_replace($itemName, $newName, $contents);
+				file_put_contents($itemListPath, $contents);
 			}
 		
 		}else{

@@ -4,34 +4,49 @@
 <link rel="stylesheet" href="w3.css">
 </head>
 <body>
-	<h4>Live feed of camera goes here. User takes pictures of the item from multiple angles.</h4>
-	<img src="demoPictures/takeImage.jpg" alt="Live feed of system camera." width="200" height="200">
-	<br>
-	<button>Take Image</button>
-	
-	<br>
-	<br>
-
-	<script>
-		function confirmSelection() {
-		  var txt;
-		  var r = confirm("Are you sure?");
-		  if (r == true) {
-			txt = "New item added.";
-		  } else {
-			txt = "You cancelled.";
-		  }
-		  document.getElementById("confirmResult").innerHTML = txt;
-		}
-	</script>
-	
-	<p1 id="confirmResult"></p1><br>
-
-	<button onclick="confirmSelection()">Finalize New Item</button>
-
-
+	<h4>Item added.</h4>
 	<form action="startScreen.php" method="get">
 		<button type="submit">Back</button>
 	</form>
+	<?php
+	
+		ini_set('display_errors', 1);
+		ini_set('display_startup_errors', 1);
+		error_reporting(E_ALL);
+		
+		$itemListPath = "/var/www/thingfinder/itemList.txt";
+		
+		$itemExists = false;
+		$message = "";
+		
+		if(isset($_POST["submit"])){
+			$itemName = $_POST["itemName"];
+			
+			$file = fopen($itemListPath,"r");
+
+			while(! feof($file)){
+				if(fgets($file) == $itemName){
+					$itemExists = true;
+					echo "Item exists, please select a different name.";
+				}
+			}
+			fclose($file);
+			
+			if ($itemExists == false){
+				
+				file_put_contents ( $itemListPath , "\n" . $itemName , FILE_APPEND );
+				//file upload stuff goes here 
+					
+			}
+			else{
+				echo $message;
+			}
+
+
+		
+		}else{
+		echo "no post";
+		}
+	?>
 </body>
 </html>
