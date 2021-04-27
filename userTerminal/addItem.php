@@ -4,12 +4,16 @@
 <link rel="stylesheet" href="w3.css">
 </head>
 <body>
-	<form action="scan.php" method="post">
+	<form action="scan.php" method="post"  enctype="multipart/form-data">
 		<h4>Register a new item for tracking:</h4> 
 		<br>
 		<label for="itemName">Name the item:</label>
 		<input type="text" id="itemName" name="itemName" required>
+		<br>
+		<label for="itemCate">Item Category:</label>
+		<input type="text" id="itemCate" name="itemCate" required>
 		<br><br>
+		
 		
 		<img src="demoPictures/takeImage.jpg" alt="Live feed of system camera." width="200" height="200">
 		<br>

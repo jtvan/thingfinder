@@ -19,6 +19,8 @@
 		$itemExists = false;
 		$message = "";
 		
+		$imgDirectory = "/var/www/thingfinder/itemImages/" . $itemName . "/";
+		
 		if(isset($_POST["submit"])){
 			$itemName = $_POST["itemName"];
 			
@@ -31,11 +33,16 @@
 			}
 			fclose($file);
 			
-			$contents = file_get_contents($itemListPath);
-			$contents = str_replace($itemName, '', $contents);
-			file_put_contents($itemListPath, $contents);
-			
-			
+			if($itemExists == true){
+				$contents = file_get_contents($itemListPath);
+				$contents = str_replace($itemName, '', $contents);
+				file_put_contents($itemListPath, $contents);
+				
+				
+				//delete saved images
+				array_map('unlink', glob("$imgDirectory/*.*"));
+				rmdir($imgDirectory);
+			}
 			if ($itemExists == false){
 				echo "Error, item doesn't exist.";
 					

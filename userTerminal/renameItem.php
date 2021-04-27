@@ -23,6 +23,9 @@
 			$itemName = $_POST["itemName"];
 			$newName = $_POST["newName"];
 			
+			$imgDirectory = "/var/www/thingfinder/itemImages/" . $itemName . "/";
+			$newImgDirectory = "/var/www/thingfinder/itemImages/" . $newName . "/";
+			
 			$file = fopen($itemListPath,"r");
 
 			while(! feof($file)){
@@ -32,7 +35,7 @@
 			}
 			fclose($file);
 			
-
+			rename($imgDirectory, $newImgDirectory);
 			
 			
 			if ($itemExists == false){
@@ -41,7 +44,7 @@
 			}
 			else{	
 				$contents = file_get_contents($itemListPath);
-				$contents = str_replace($itemName, $newName, $contents);
+				$contents = str_replace($itemName, $newName . "\n", $contents);
 				file_put_contents($itemListPath, $contents);
 			}
 		
