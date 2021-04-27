@@ -19,23 +19,29 @@
 		$itemExists = false;
 		$message = "";
 		
-		$imgDirectory = "/var/www/thingfinder/itemImages/" . $itemName . "/";
+
 		
 		if(isset($_POST["submit"])){
 			$itemName = $_POST["itemName"];
 			
 			$file = fopen($itemListPath,"r");
+			
+			
+			$imgDirectory = "/var/www/thingfinder/itemImages/" . $itemName . "/";
 
+			//find if item exists in item list
 			while(! feof($file)){
-				if(fgets($file) == $itemName){
+				$currentLine = fgets($file);
+				if(strpos($currentLine, $itemName ) !== false){
 					$itemExists = true;
 				}
 			}
 			fclose($file);
 			
 			if($itemExists == true){
+				//remove item from list
 				$contents = file_get_contents($itemListPath);
-				$contents = str_replace($itemName, '', $contents);
+				$contents = str_replace($fullItemName, '', $contents);
 				file_put_contents($itemListPath, $contents);
 				
 				
@@ -45,11 +51,10 @@
 			}
 			if ($itemExists == false){
 				echo "Error, item doesn't exist.";
-					
 			}
 		
 		}else{
-		echo "no post";
+		echo "No post error.";
 		}
 	?>
 </body>

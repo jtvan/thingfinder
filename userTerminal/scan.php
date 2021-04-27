@@ -21,6 +21,11 @@
 		
 		if(isset($_POST["submit"])){
 			$itemName = $_POST["itemName"];
+			$itemCategory = $_POST["itemCate"];
+			
+			//used for item removal and such
+			$itemCompoundName = $itemName . ":" . $itemCategory;
+			
 			
 			$file = fopen($itemListPath,"r");
 
@@ -33,7 +38,9 @@
 			fclose($file);
 			
 			if ($itemExists == false){
-
+				//add item to list
+				file_put_contents ( $itemListPath , "\n" . $itemName . " : " . $itemCategory, FILE_APPEND );
+				
 				$itemPictureDirPath = "/var/www/thingfinder/itemImages/" . $itemName . "/";
 				
 				mkdir($itemPictureDirPath, 0700);
@@ -89,13 +96,13 @@
 				}
 			}
 			else{
-				echo $message;
+				echo "Sorry, an item of that name already exists.";
 			}
 
 
 		
 		}else{
-		echo "no post";
+		echo "No post error.";
 		}
 	?>
 </body>

@@ -28,14 +28,16 @@
 			
 			$file = fopen($itemListPath,"r");
 
+			$fullItemName = "";
+
+			//find if item exists in item list
 			while(! feof($file)){
-				if(fgets($file) == $itemName){
+				$currentLine = fgets($file);
+				if(strpos($currentLine, $itemName . " : " ) !== false){
 					$itemExists = true;
+					$fullItemName = $currentLine;
 				}
 			}
-			fclose($file);
-			
-			rename($imgDirectory, $newImgDirectory);
 			
 			
 			if ($itemExists == false){
@@ -46,10 +48,12 @@
 				$contents = file_get_contents($itemListPath);
 				$contents = str_replace($itemName, $newName . "\n", $contents);
 				file_put_contents($itemListPath, $contents);
+				
+				rename($imgDirectory, $newImgDirectory);
 			}
 		
 		}else{
-		echo "no post";
+		echo "No post error.";
 		}
 	?>
 </body>
