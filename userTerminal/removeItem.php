@@ -4,10 +4,6 @@
 <link rel="stylesheet" href="w3.css">
 </head>
 <body>
-	<h4>Item removed.</h4>
-	<form action="modifyItem.php" method="get">
-		<button type="submit">Back</button>
-	</form>
 	<?php
 	
 		ini_set('display_errors', 1);
@@ -24,30 +20,49 @@
 		if(isset($_POST["submit"])){
 			$itemName = $_POST["itemName"];
 			
-			$file = fopen($itemListPath,"r");
+			// $file = fopen($itemListPath,"r");
 			
 			
 			$imgDirectory = "/var/www/thingfinder/itemImages/" . $itemName . "/";
-
+			echo $itemName;
 			//find if item exists in item list
-			while(! feof($file)){
-				$currentLine = fgets($file);
-				if(strpos($currentLine, $itemName ) !== false){
-					$itemExists = true;
-				}
+			if(strpos(file_get_contents($itemListPath), $itemName) !== false){
+				$itemExists = true;
 			}
-			fclose($file);
+			// while(! feof($file)){
+				// $currentLine = fgets($file);
+
+			// }
+			// fclose($file);
 			
 			if($itemExists == true){
 				//remove item from list
-				$contents = file_get_contents($itemListPath);
-				$contents = str_replace($fullItemName, '', $contents);
-				file_put_contents($itemListPath, $contents);
+				$DELETE = $itemName;
+
+				$data = file($itemListPath);
+
+				$out = array();
+
+				foreach($data as $line) {
+				 if(trim($line) != $DELETE) {
+					 $out[] = $line;
+				 }
+				}
+
+				$fp = fopen($itemListPath, "w+");
+				flock($fp, LOCK_EX);
+				foreach($out as $line) {
+				 fwrite($fp, $line);
+				}
+				flock($fp, LOCK_UN);
+				fclose($fp);  
 				
 				
 				//delete saved images
 				array_map('unlink', glob("$imgDirectory/*.*"));
 				rmdir($imgDirectory);
+				
+				echo "Successfully removed " . $itemName ."!";
 			}
 			if ($itemExists == false){
 				echo "Error, item doesn't exist.";
@@ -57,5 +72,8 @@
 		echo "No post error.";
 		}
 	?>
+	<form action="modifyItem.php" method="get">
+		<button type="submit">Back</button>
+	</form>
 </body>
 </html>

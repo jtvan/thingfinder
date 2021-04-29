@@ -45,7 +45,7 @@
 	</form>
 	<br>
 	<form action ="removeItem.php" method ="post">
-			<select name="itemName" size="10">
+			<select name="itemName" id="itemName" size="10">
 			<?php
 				//TODO get item list dynamically
 				$file = fopen("../itemList.txt","r");

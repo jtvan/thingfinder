@@ -4,10 +4,6 @@
 <link rel="stylesheet" href="w3.css">
 </head>
 <body>
-	<h4>Item renamed.</h4>
-	<form action="modifyItem.php" method="get">
-		<button type="submit">Back</button>
-	</form>
 	<?php
 	
 		ini_set('display_errors', 1);
@@ -56,5 +52,8 @@
 		echo "No post error.";
 		}
 	?>
+	<form action="modifyItem.php" method="get">
+		<button type="submit">Back</button>
+	</form>
 </body>
 </html>

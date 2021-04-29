@@ -30,7 +30,7 @@
 			$file = fopen($itemListPath,"r");
 
 			while(! feof($file)){
-				if(fgets($file) == $itemName){
+				if(fgets($file) == $itemCompoundName){
 					$itemExists = true;
 					echo "Item exists, please select a different name.";
 				}
@@ -39,9 +39,9 @@
 			
 			if ($itemExists == false){
 				//add item to list
-				file_put_contents ( $itemListPath , "\n" . $itemName . " : " . $itemCategory, FILE_APPEND );
+				file_put_contents ( $itemListPath , $itemCompoundName . "\n", FILE_APPEND );
 				
-				$itemPictureDirPath = "/var/www/thingfinder/itemImages/" . $itemName . "/";
+				$itemPictureDirPath = "/var/www/thingfinder/itemImages/" . $itemCompoundName . "/";
 				
 				mkdir($itemPictureDirPath, 0700);
 				
