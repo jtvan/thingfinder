@@ -3,7 +3,7 @@
 <head>
 	<link rel="stylesheet" href="w3.css">
 </head>
-	
+	<!-- depricated due to running out of time -->
 <body>
 	<h4>Camera Feed:</h4>
 	<br>
