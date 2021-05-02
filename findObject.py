@@ -1,7 +1,4 @@
-#Webcam Intergration Testing
-from IPython.display import display, Javascript
-from google.colab.output import eval_js
-from base64 import b64decode
+
 # create a YOLOv3 Keras model and save it to file
 # based on https://github.com/experiencor/keras-yolo3
 import struct
@@ -168,10 +165,13 @@ class WeightReader:
 	def reset(self):
 		self.offset = 0
 
+
+weightPath=sys.argv[4]
+
 # define the model
 model = make_yolov3_model()
 # load the model weights
-weight_reader = WeightReader('yolov3.weights')
+weight_reader = WeightReader(weightPath)
 # set the model weights into the model
 weight_reader.load_weights(model)
 # save the model to file
@@ -213,7 +213,7 @@ def ObjectDetect(fileLoc,object2find,thresh):
     netout[..., :2]  = _sigmoid(netout[..., :2])
     netout[..., 4:]  = _sigmoid(netout[..., 4:])
     netout[..., 5:]  = netout[..., 4][..., np.newaxis] * netout[..., 5:]
-    netout[..., 5:] *= netout[..., 5:] > obj_thresh
+    netout[..., 5:] *= netout[..., 5:] > float(obj_thresh)
 
     for i in range(grid_h*grid_w):
       row = i / grid_w
@@ -221,7 +221,7 @@ def ObjectDetect(fileLoc,object2find,thresh):
       for b in range(nb_box):
         # 4th element is objectness score
         objectness = netout[int(row)][int(col)][b][4]
-        if(objectness.all() <= obj_thresh): continue
+        if(objectness.all() <= float(obj_thresh)): continue
         # first 4 elements are x, y, w, and h
         x, y, w, h = netout[int(row)][int(col)][b][:4]
         x = (col + x) / grid_w # center position, unit: image width
@@ -306,7 +306,7 @@ def ObjectDetect(fileLoc,object2find,thresh):
       # enumerate all possible labels
       for i in range(len(labels)):
         # check if the threshold for this label is high enough
-        if box.classes[i] > thresh:
+        if box.classes[i] > float(thresh):
           v_boxes.append(box)
           v_labels.append(labels[i])
           v_scores.append(box.classes[i]*100)
@@ -339,7 +339,7 @@ def ObjectDetect(fileLoc,object2find,thresh):
     # show the plot
     pyplot.gca().set_axis_off()
     pyplot.margins(0,0)
-    pyplot.savefig("detectionOut.png",bbox_inches='tight',dpi=300)
+    pyplot.savefig(outputPath,bbox_inches='tight',dpi=300)
     
 
   # load yolov3 model
@@ -388,7 +388,11 @@ def ObjectDetect(fileLoc,object2find,thresh):
 photo_file = sys.argv[1]
 object2find=sys.argv[2]
 thresh=sys.argv[3]
+
+outputPath=sys.argv[4]
 # argument 1 = photo to detect
 # argument 2 = object to find
 # argument 3 = threshold between 0 and 1 (use .65 as defualt)
+# arg 4 = path to yolo weighs file
+# arg 5 = path to put the output file 
 ObjectDetect(photo_file,object2find,thresh)

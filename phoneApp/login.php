@@ -4,6 +4,17 @@
 		<link rel="stylesheet" href="w3.css">
 	</head>
 	
+	<?php
+		session_start();
+
+		//check if logged in 
+		if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
+			header("location: startScreen.php");
+			exit;
+		}
+
+
+	?>
 	<h2>Welcome to Thing Finder Mobile!</h2>
 	<form action="startScreen.php" method="post">
 		<label for="username">Username:</label><br>
