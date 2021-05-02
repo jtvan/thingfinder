@@ -25,16 +25,7 @@
 		// define variables and set to empty values
 		$itemName = "";
 
-		//rania URL for JSON integration
-		$ch = curl_init('http://rania-env.eba-zymia96u.us-east-2.elasticbeanstalk.com/');
 		
-		$data = array(
-			'timeStamp' => time(),
-			'deviceName' => 'ThingFinder',
-			'patientName' => $_SESSION['username'],
-			'Priority' => 'low',
-			'Message' => 'Item Location Requested'
-		);
 
 		if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			if (empty($_POST["itemName"])) {
@@ -97,6 +88,27 @@
 
 
 			}
+			//rania URL for JSON integration
+		$ch = curl_init('http://rania-env.eba-zymia96u.us-east-2.elasticbeanstalk.com/');
+
+		//create JSON object
+		if(isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] == true){
+			$JSON_Obj = array(
+				'timeStamp' => date('D-m-h:i:s',time()),
+				'deviceName' => 'ThingFinder',
+				'patientName' => $_SESSION['username'],
+				'Priority' => 'low',
+				'Message' => $itemName.' Location Requested'
+			);
+		}
+
+		//sending JSON 
+		$Request_Data = json_encode($JSON_Obj);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $Request_Data);
+		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+		$Curl_Out = curl_exec($ch);
+		curl_close($ch);
 		}
 		else{echo "yeeee";}
 	?>
