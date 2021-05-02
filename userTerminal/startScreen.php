@@ -10,7 +10,7 @@
 		session_start();
 		
 		// Check if the user is logged in, otherwise redirect to login page
-		if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+		if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true || !isset($_SESSION["permission"]) || $_SESSION["permission"] != "x"){
 			header("location: login.php");
 			exit;
 		}
@@ -20,14 +20,8 @@
 	?>!</h2>
 	<br>
 	<br>
+	<h3>What can we help you with today?</h3>
 	<br>
-
-	<form action="update.php" method="get">
-		<button type="submit">Check for Updates</button>
-	</form>
-	
-	<br><br>
-	<p2>Please select an action:<p2>
 	<form action="addItem.php" method="get">
 		<button type="submit">Add a New Item</button>
 	</form>
@@ -36,9 +30,19 @@
 		<button type="submit">Modify an Item</button>
 	</form>
 	
+	<!-- removed due to time constraints
+
 	<form action="addUser.php" method="get">
 		<button type="submit">Add a New User</button>
 	</form>
+	--> 
+
+
+	<form action="update.php" method="get">
+		<button type="submit">Check for Updates</button>
+	</form>
+
+
 
 	<br><br><br>
 	<form action="logout.php" method="get">
