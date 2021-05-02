@@ -4,14 +4,24 @@
 <link rel="stylesheet" href="w3.css">
 </head>
 <body>
-	<h4>Welcome Username!</h4>
+	<h2>Welcome 
+	<?php
+		// Initialize the session
+		session_start();
+		
+		// Check if the user is logged in, otherwise redirect to login page
+		if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+			header("location: login.php");
+			exit;
+		}
+		else{
+			echo $_SESSION["username"];
+		}
+	?>!</h2>
 	<br>
 	<br>
 	<br>
-	
-	<form action="login.php" method="get">
-		<button type="submit">Logout</button>
-	</form>
+
 	<form action="update.php" method="get">
 		<button type="submit">Check for Updates</button>
 	</form>
@@ -28,6 +38,11 @@
 	
 	<form action="addUser.php" method="get">
 		<button type="submit">Add a New User</button>
+	</form>
+
+	<br><br><br>
+	<form action="logout.php" method="get">
+		<button type="submit">Logout</button>
 	</form>
 	
 </body>

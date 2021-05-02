@@ -8,6 +8,19 @@
 	<form action="startScreen.php" method="get">
 		<button type="submit">Back</button>
 	</form>
+	
+	<?php
+		// Initialize the session
+		session_start();
+		
+		// Check if the user is logged in, otherwise redirect to login page
+		if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+			header("location: login.php");
+			exit;
+		}
+	?>
+
+
 	<?php
 	
 		ini_set('display_errors', 1);

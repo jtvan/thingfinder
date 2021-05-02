@@ -5,6 +5,17 @@
 </head>
 <body>
 	<?php
+		// Initialize the session
+		session_start();
+		
+		// Check if the user is logged in, otherwise redirect to login page
+		if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true){
+			header("location: login.php");
+			exit;
+		}
+	?>
+
+	<?php
 	
 		ini_set('display_errors', 1);
 		ini_set('display_startup_errors', 1);

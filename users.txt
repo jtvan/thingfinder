@@ -1,0 +1,2 @@
+ThingAdmin:ThingAdminPass:x
+ThingUser:ThingUserPass:o

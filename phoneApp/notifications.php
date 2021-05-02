@@ -5,6 +5,9 @@
 </head>
 
 <body>
+	<!-- removed due to time constraints -->
+
+	<!--
 	<h4>System Notifications:</h4>
 	
 	<br>
@@ -27,6 +30,6 @@
 	<form action="startScreen.php" method="get">
 		<button type="submit">back</button>
 	</form>
-	
+	-->
 </body>
 </html>
