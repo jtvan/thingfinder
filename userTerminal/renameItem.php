@@ -34,52 +34,50 @@
 				echo "Error, item doesn't exist.";
 					
 			}
+			elseif (empty($newName)){
+				echo "New name cannot be empty, item unchanged.";
+			}
 			else{	
-				if (empty($newName)){
-					echo "New name cannot be empty, item unchanged."
-				}
-				else{
-					#process renamed name
-					$separatedName = explode(":", $itemOldName);
+				#process renamed name
+				$separatedName = explode(":", $itemOldName);
 
-					$itemCategory = $separatedName[1];
+				$itemCategory = $separatedName[1];
 
-					$fullNewName = $newName . ":" . $itemCategory;
+				$fullNewName = $newName . ":" . $itemCategory;
 
-					$imgDirectory = "/var/www/thingfinder/itemImages/" . $itemOldName . "/";
-					
-					$newImgDirectory = "/var/www/thingfinder/itemImages/" . $fullNewName . "/";
-					
-					//remove item from list
-					$DELETE = $itemOldName;
+				$imgDirectory = "/var/www/thingfinder/itemImages/" . $itemOldName . "/";
+				
+				$newImgDirectory = "/var/www/thingfinder/itemImages/" . $fullNewName . "/";
+				
+				//remove item from list
+				$DELETE = $itemOldName;
 
-					$data = file($itemListPath);
+				$data = file($itemListPath);
 
-					$out = array();
+				$out = array();
 
-					foreach($data as $line) {
-						if(trim($line) != $DELETE) {
-							$out[] = $line;
-						}
+				foreach($data as $line) {
+					if(trim($line) != $DELETE) {
+						$out[] = $line;
 					}
-
-					$fp = fopen($itemListPath, "w+");
-					flock($fp, LOCK_EX);
-					foreach($out as $line) {
-						fwrite($fp, $line);
-					}
-					flock($fp, LOCK_UN);
-					fclose($fp);  
-
-					
-					//add new name to folder
-					file_put_contents($itemListPath, $fullNewName);
-
-					//move folder
-					rename($imgDirectory, $newImgDirectory);
-
-					echo "Item successfully renamed";
 				}
+
+				$fp = fopen($itemListPath, "w+");
+				flock($fp, LOCK_EX);
+				foreach($out as $line) {
+					fwrite($fp, $line);
+				}
+				flock($fp, LOCK_UN);
+				fclose($fp);  
+
+				
+				//add new name to folder
+				file_put_contents($itemListPath, $fullNewName);
+
+				//move folder
+				rename($imgDirectory, $newImgDirectory);
+
+				echo "Item successfully renamed";
 			}
 		
 		}else{

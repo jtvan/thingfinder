@@ -1,5 +1,6 @@
 #Webcam Intergration Testing
 from IPython.display import display, Javascript
+from google.colab.output import eval_js
 from base64 import b64decode
 # create a YOLOv3 Keras model and save it to file
 # based on https://github.com/experiencor/keras-yolo3
@@ -22,44 +23,6 @@ from matplotlib import pyplot
 from matplotlib.patches import Rectangle
 from IPython.display import Image
 
-# def take_photo(filename='photo.jpg', quality=0.8):
-  # js = Javascript('''
-    # async function takePhoto(quality) {
-      # const div = document.createElement('div');
-      # const capture = document.createElement('button');
-      # capture.textContent = 'Capture';
-      # div.appendChild(capture);
-
-      # const video = document.createElement('video');
-      # video.style.display = 'block';
-      # const stream = await navigator.mediaDevices.getUserMedia({video: true});
-
-      # document.body.appendChild(div);
-      # div.appendChild(video);
-      # video.srcObject = stream;
-      # await video.play();
-
-      # // Resize the output to fit the video element.
-      # google.colab.output.setIframeHeight(document.documentElement.scrollHeight, true);
-
-      # // Wait for Capture to be clicked.
-      # await new Promise((resolve) => capture.onclick = resolve);
-
-      # const canvas = document.createElement('canvas');
-      # canvas.width = video.videoWidth;
-      # canvas.height = video.videoHeight;
-      # canvas.getContext('2d').drawImage(video, 0, 0);
-      # stream.getVideoTracks()[0].stop();
-      # div.remove();
-      # return canvas.toDataURL('image/jpeg', quality);
-    # }
-    # ''')
-  # display(js)
-  # data = eval_js('takePhoto({})'.format(quality))
-  # binary = b64decode(data.split(',')[1])
-  # with open(filename, 'wb') as f:
-    # f.write(binary)
-  # return filename
 
 def _conv_block(inp, convs, skip=True):
 	x = inp
@@ -214,7 +177,7 @@ weight_reader.load_weights(model)
 # save the model to file
 model.save('model.h5')
 
-def ObjectDetect(fileLoc,object2find):
+def ObjectDetect(fileLoc,object2find,thresh):
   class BoundBox:
     def __init__(self, xmin, ymin, xmax, ymax, objness = None, classes = None):
       self.xmin = xmin
@@ -376,7 +339,7 @@ def ObjectDetect(fileLoc,object2find):
     # show the plot
     pyplot.gca().set_axis_off()
     pyplot.margins(0,0)
-    pyplot.savefig("detectionOut.png",bbox_inches='tight')
+    pyplot.savefig("detectionOut.png",bbox_inches='tight',dpi=300)
     
 
   # load yolov3 model
@@ -394,7 +357,7 @@ def ObjectDetect(fileLoc,object2find):
   # define the anchors
   anchors = [[116,90, 156,198, 373,326], [30,61, 62,45, 59,119], [10,13, 16,30, 33,23]]
   # define the probability threshold for detected objects
-  class_threshold = 0.6
+  class_threshold = thresh
   boxes = list()
   for i in range(len(yhat)):
     # decode the output of the network
@@ -422,18 +385,10 @@ def ObjectDetect(fileLoc,object2find):
   # draw what we found
   draw_boxes(photo_filename, v_boxes, v_labels, v_scores, object2find)
 
-try:
-  filename = take_photo()
-  print('Saved to {}'.format(filename))
-  
-  # Show the image which was just taken.
-  display(Image(filename))
-except Exception as err:
-  # Errors will be thrown if the user does not have a webcam or if they do not
-  # grant the page permission to access it.
-  print(str(err))
-
-photo_file = filename
-object2find=sys.argv[1]
-
-ObjectDetect(photo_file,object2find)
+photo_file = sys.argv[1]
+object2find=sys.argv[2]
+thresh=sys.argv[3]
+# argument 1 = photo to detect
+# argument 2 = object to find
+# argument 3 = threshold between 0 and 1 (use .65 as defualt)
+ObjectDetect(photo_file,object2find,thresh)
