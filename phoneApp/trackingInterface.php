@@ -33,7 +33,7 @@
 
 
 			#get the item category
-			$itemName=strval($_POST["itemName"]);
+			$itemName=trim(strval($_POST["itemName"]));
 			$separatedName = explode(":", $itemName);
 
 			$itemCategory = "\"". trim($separatedName[1]) . "\"";

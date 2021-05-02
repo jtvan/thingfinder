@@ -4,6 +4,9 @@
 <link rel="stylesheet" href="w3.css">
 </head>
 <body>
+
+	<!-- removed due to time constraint 
+
 	<h4>Please Select an action.</h4>
 	<br>
 	
@@ -32,5 +35,7 @@
 	<form action="startScreen.php" method="get">
 		<button type="submit">Back</button>
 	</form>
+	--> 
+	
 </body>
 </html>

@@ -12,8 +12,8 @@
 	<form action="login.php" method="get">
 		<button type="submit">Logout</button>
 	</form>
-	<form action="menu.php" method="get">
-		<button type="submit">Menu</button>
+	<form action="update.php" method="get">
+		<button type="submit">Check for Updates</button>
 	</form>
 	
 	<br><br>
