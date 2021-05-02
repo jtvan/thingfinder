@@ -4,3 +4,4 @@ change write perms on /var/www/thingfinderDirectory to wwwdata
 install php
 enable php in apache 
 install ipython 
+php-curl

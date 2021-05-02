@@ -5,6 +5,17 @@
 </head>
 	
 <body>
+
+
+<?php
+	//remove previous results
+
+	$lastResult = "/var/www/thingfinder/result.png" ;
+	if(file_exists($lastResult)== true){
+		unlink($lastResult);
+	}
+?>
+
 	<h2>What can we help you find, <?php
 		// Initialize the session
 		session_start();
