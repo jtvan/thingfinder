@@ -52,6 +52,9 @@
 		background-color: DodgerBlue !important;
 		color: #ffffff;
 		}
+		.isValid {
+		background: green;
+		}
 	</style>
 </head>
 <body>
