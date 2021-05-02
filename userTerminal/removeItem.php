@@ -18,23 +18,15 @@
 
 		
 		if(isset($_POST["submit"])){
-			$itemName = $_POST["itemName"];
-			
-			// $file = fopen($itemListPath,"r");
-			
+			$itemName = trim($_POST["itemName"]);		
 			
 			$imgDirectory = "/var/www/thingfinder/itemImages/" . $itemName . "/";
-			echo $itemName;
+
 			//find if item exists in item list
 			if(strpos(file_get_contents($itemListPath), $itemName) !== false){
 				$itemExists = true;
 			}
-			// while(! feof($file)){
-				// $currentLine = fgets($file);
 
-			// }
-			// fclose($file);
-			
 			if($itemExists == true){
 				//remove item from list
 				$DELETE = $itemName;
@@ -51,9 +43,9 @@
 
 				$fp = fopen($itemListPath, "w+");
 				flock($fp, LOCK_EX);
-				foreach($out as $line) {
-				 fwrite($fp, $line);
-				}
+					foreach($out as $line) {
+					fwrite($fp, $line);
+					}
 				flock($fp, LOCK_UN);
 				fclose($fp);  
 				

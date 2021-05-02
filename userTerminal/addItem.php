@@ -70,7 +70,7 @@
 		</div>
 		<br><br>
 				
-		<button onclick="showCateList()" id="cateListButton">Show Category List</button>
+		<button onclick="showCateList()" id="cateListButton" type="button">Show Category List</button>
 		<br>
 		<div id="cateList"></div>
 

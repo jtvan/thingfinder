@@ -20,11 +20,24 @@
 			  } 
 			  else 
 			  {
+				/*
+				old demo line 
 				$itemName=strval($_POST["itemName"]);
 				$itemPath="../demoPictures/bounded";
 				$itemExtension=".png";
 				
 				echo  "src=\"	". $itemPath .  $itemName . $itemExtension. "\" alt=\"". $itemPath. $itemName . $itemExtension."\"";
+				*/
+
+				//call the script to make the bounded image. Provide category, name, and temperature
+
+				//wait and display image 
+
+				//prompt user if image is correct or not? 
+						//if correct, save the item to the corresponding directory 
+						//if not, delete and show last item
+
+
 			  }
 			}
 		?>
