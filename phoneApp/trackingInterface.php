@@ -14,6 +14,17 @@
 		// define variables and set to empty values
 		$itemName = "";
 
+		//rania URL for JSON integration
+		$ch = curl_init('http://rania-env.eba-zymia96u.us-east-2.elasticbeanstalk.com/');
+		
+		$data = array(
+			'timeStamp' => time(),
+			'deviceName' => 'ThingFinder',
+			'patientName' => $_SESSION['username'],
+			'Priority' => 'low',
+			'Message' => 'Item Location Requested'
+		);
+
 		if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			if (empty($_POST["itemName"])) {
 			echo "src=\"null\" alt=\"Please select an item.\"";
