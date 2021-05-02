@@ -5,7 +5,7 @@
 </head>
 
 <body>
-	<h4>Item Tracking:</h4>
+	<h2>Item Tracking:</h2>
 	
 	<?php
 		ini_set('display_errors', 1);
@@ -46,10 +46,10 @@
 
 			$command = "/usr/bin/python3 /var/www/thingfinder/findObject.py " . $cameraFeedPath . " " . $itemCategory . " " . $prefThreshold . " " . $weightPath. " " .	$outputPath ." 2>&1";
 
-
-			
 			exec($command, $out, $status);
 
+
+			//testing stuff
 			/*echo $command;
 
 			echo "<br><br>";
@@ -57,8 +57,15 @@
 			foreach ($out as $line) {
 				echo $line . "<br><br>";
 			} 
-			
+		
 			echo $status;*/
+
+			
+			$result = end($out);
+
+
+
+
 			
 			//wait and display image 
 
@@ -71,6 +78,20 @@
 		}
 		else{echo "yeeee";}
 	?>
+	<h3>
+		<?php
+			if($result == "False"){
+				echo "We could not locate your item.";
+				//if it exists, show the most recent location
+
+			}
+			//else, is this your item? if yes -> save/move the photo, else delete it 
+
+		?>
+	</h3>
+
+
+	<img src="../result.png" alt="Loading">
 
 	<br>
 	<br>

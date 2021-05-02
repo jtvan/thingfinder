@@ -315,6 +315,7 @@ def ObjectDetect(fileLoc,object2find,thresh):
 
   # draw all results
   def draw_boxes(filename, v_boxes, v_labels, v_scores, object2find):
+    foundObject = False
     # load the image
     data = pyplot.imread(filename)
     # plot the image
@@ -336,10 +337,13 @@ def ObjectDetect(fileLoc,object2find,thresh):
         # draw text and score in top left corner
         label = "%s (%.3f)" % (v_labels[i], v_scores[i])
         pyplot.text(x1, y1, label, color='red')
+        #function return result
+        foundObject = True
     # show the plot
     pyplot.gca().set_axis_off()
     pyplot.margins(0,0)
     pyplot.savefig(outputPath,bbox_inches='tight',dpi=300)
+    return foundObject
     
 
   # load yolov3 model
@@ -383,7 +387,8 @@ def ObjectDetect(fileLoc,object2find,thresh):
   for i in range(len(v_boxes)):
     print(v_labels[i], v_scores[i])
   # draw what we found
-  draw_boxes(photo_filename, v_boxes, v_labels, v_scores, object2find)
+  print(draw_boxes(photo_filename, v_boxes, v_labels, v_scores, object2find))
+  
 
 photo_file = sys.argv[1]
 object2find=sys.argv[2]
