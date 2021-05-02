@@ -2,3 +2,4 @@ fooby:sports ball
 char:chair
 table:diningtable
 mouse:mouse
+cb:cup

@@ -389,7 +389,7 @@ photo_file = sys.argv[1]
 object2find=sys.argv[2]
 thresh=sys.argv[3]
 
-outputPath=sys.argv[4]
+outputPath=sys.argv[5]
 # argument 1 = photo to detect
 # argument 2 = object to find
 # argument 3 = threshold between 0 and 1 (use .65 as defualt)

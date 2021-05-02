@@ -44,27 +44,21 @@
 
 			set_time_limit (60 );
 
-			$command = "/usr/bin/python3 /var/www/thingfinder/findObject.py " . $cameraFeedPath . " " . $itemCategory . " " . $prefThreshold . " " . $weightPath. " 2>&1";
+			$command = "/usr/bin/python3 /var/www/thingfinder/findObject.py " . $cameraFeedPath . " " . $itemCategory . " " . $prefThreshold . " " . $weightPath. " " .	$outputPath ." 2>&1";
 
-			echo $command;
 
-			echo "<br><br>";
 			
-			#unset($out);
-
 			exec($command, $out, $status);
 
-			#var_dump($out);
-		
+			/*echo $command;
+
 			echo "<br><br>";
 			
 			foreach ($out as $line) {
 				echo $line . "<br><br>";
 			} 
 			
-
-			echo "<br><br>";
-			echo $status;
+			echo $status;*/
 			
 			//wait and display image 
 
