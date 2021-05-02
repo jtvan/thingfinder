@@ -10,18 +10,20 @@
 	</style>
 </head> 
 
-	<h1>Thing Finder Demo Page</h1>
-	<br><br>
-	
+	<h1>Thing Finder Demo</h1>
+	<br>	
 	<h4>This is a demo for the functionality of the thing finder system.<br>
 	<br>
 	Please select a section of the project you would like to explore from the options below:<h4>
 	<br>
 	<br>
+
+	<form action="phoneApp/login.php" method="post">
+		<input type="submit" value="Preview App">
+	</form>
+	<br>
 	<form action="userTerminal/login.php" method="post">
 		<input type="submit" value="Preview Managment Console">
 	</form>
-	<form action="phoneApp/login.php" method="post">
-		<input type="submit" value="Preview Phone App">
-	</form>
+
 </html>
