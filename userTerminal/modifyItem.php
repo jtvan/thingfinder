@@ -17,9 +17,7 @@
 		}
 	?>
 	
-	<h4>Select an item from the list to modify.</h4>
-
-	<br>
+	<h3>Select an item from the list to modify.</h3>
 
 	<script>
 		function confirmRemoval() {
@@ -34,11 +32,11 @@
 		}
 	</script>
 
+	<br>
 
-	<br>
-	<br>
-	<form action ="renameItem.php" method ="post">
-		<select name="itemName" size="10">
+	<h4>Item list:</h4>
+	<form  method ="post">
+		<select name="itemName" size="10" style="min-width: 300px;font-size: 18px;">
 		<?php
 			//TODO get item list dynamically
 			$file = fopen("../itemList.txt","r");
@@ -52,27 +50,15 @@
 		?>
 		</select>
 		<br>
-		<input type="text" id="newName" name="newName">
-		<button name="submit" type="submit">Rename Item</button>
+		<br>
+		<input type="text" id="newName" name="newName" placeholder="Enter new item name:">
+		<button name="submit" type="submit" formaction ="renameItem.php">Rename Item</button>
+		<br>
+		<br>
+		<button onclick="confirmRemoval()" name="submit" type="submit" formaction ="removeItem.php">Remove Item</button>
 	</form>
 	<br>
-	<form action ="removeItem.php" method ="post">
-			<select name="itemName" id="itemName" size="10">
-			<?php
-				//TODO get item list dynamically
-				$file = fopen("../itemList.txt","r");
-				while(! feof($file))
-				{
-					$current = fgets($file);
-					echo "<option value=\"" . $current . "\">" . $current . "</option>";
-				}
-
-				fclose($file);
-			?>
-		</select>
-		<br>
-		<button onclick="confirmRemoval()" name="submit" type="submit">Confirm Item Removal</button>
-	</form>
+	
 
 	<br>
 
