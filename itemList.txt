@@ -1,5 +1,2 @@
-fooby:sports ball
-char:chair
-table:diningtable
-mouse:mouse
-cb:cup
+chair:chair
+mouse2:mouse
