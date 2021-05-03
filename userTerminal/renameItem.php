@@ -76,7 +76,7 @@
 
 				
 				//add new name to item list
-				file_put_contents($itemListPath, $fullNewName,FILE_APPEND);
+				file_put_contents($itemListPath, $fullNewName . "\n",FILE_APPEND);
 
 				//move folder
 				rename($imgDirectory, $newImgDirectory);

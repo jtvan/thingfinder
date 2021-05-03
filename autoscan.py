@@ -3,5 +3,3 @@
 #pull all item categories and names from item list 
 
 #run on each category 
-
-def 

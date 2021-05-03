@@ -45,7 +45,7 @@
 				$separatedName = explode(":", $itemName);
 
 				$itemCategory = "\"". trim($separatedName[1]) . "\"";
-				$cameraFeedPath = "\"" . "/home/thingfinder/Desktop/Testing Pictures/IMG_20210426_161306.jpg" . "\"";
+				$cameraFeedPath = "\"" . "/home/thingfinder/Desktop/Testing Pictures/IMG_20210426_161120.jpg" . "\"";
 				$prefThreshold = "0.65";
 				$weightPath = "\"" . "/var/www/thingfinder/yolov3.weights".  "\"";
 				$outputPath = "\"" . "/var/www/thingfinder/result.png".  "\"";

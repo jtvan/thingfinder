@@ -78,9 +78,9 @@
 
 						header("location: startScreen.php");
 					}
-					else{
+					/*else{
 						$login_err = "That account does not have permission to access the managment console.";
-					}
+					}*/
 				}
 				else $login_err = "Invalid username or password.";
 

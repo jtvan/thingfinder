@@ -18,11 +18,11 @@
 	<br>
 	<br>
 
-	<form action="phoneApp/login.php" method="post">
+	<form action="phoneApp/login.php" method="get">
 		<input type="submit" value="Preview App">
 	</form>
 	<br>
-	<form action="userTerminal/login.php" method="post">
+	<form action="userTerminal/login.php" method="get">
 		<input type="submit" value="Preview Managment Console">
 	</form>
 

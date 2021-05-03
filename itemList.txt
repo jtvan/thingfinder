@@ -1,2 +1,0 @@
-chair:chair
-asdasd:bicycle

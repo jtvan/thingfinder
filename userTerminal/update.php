@@ -18,18 +18,20 @@
 
 
     <?php
-        $command = "/usr/bin/git -C /var/www/thingfinder/ status";
+        $command = "/usr/bin/git -C /var/www/thingfinder/ pull";
         exec($command, $out, $status);
 
         echo $command;
 
 			echo "<br><br>";
 			
+			echo end($out);
+			/*
 			foreach ($out as $line) {
 				echo $line . "<br><br>";
-			} 
+			} */
 		
-		echo $status;
+		#echo $status;
     ?>
 
 	<form action="startScreen.php" method="get">
