@@ -30,48 +30,53 @@
 
 		
 		if(isset($_POST["submit"])){
-			$itemName = trim($_POST["itemName"]);		
-			
-			$imgDirectory = "/var/www/thingfinder/itemImages/" . $itemName . "/";
-
-			//find if item exists in item list
-			if(strpos(file_get_contents($itemListPath), $itemName) !== false){
-				$itemExists = true;
+			$itemName = $_POST["itemName"];	
+			if (empty($itemName)){ //exit if new name is bad
+				echo "New name cannot be empty, item unchanged.";
 			}
+			else{
+				$itemName = trim($_POST["itemName"]);		
+				
+				$imgDirectory = "/var/www/thingfinder/itemImages/" . $itemName . "/";
 
-			if($itemExists == true){
-				//remove item from list
-				$DELETE = $itemName;
-
-				$data = file($itemListPath);
-
-				$out = array();
-
-				foreach($data as $line) {
-				 if(trim($line) != $DELETE) {
-					 $out[] = $line;
-				 }
+				//find if item exists in item list
+				if(strpos(file_get_contents($itemListPath), $itemName) !== false){
+					$itemExists = true;
 				}
 
-				$fp = fopen($itemListPath, "w+");
-				flock($fp, LOCK_EX);
-					foreach($out as $line) {
-					fwrite($fp, $line);
+				if($itemExists == true){
+					//remove item from list
+					$DELETE = $itemName;
+
+					$data = file($itemListPath);
+
+					$out = array();
+
+					foreach($data as $line) {
+					if(trim($line) != $DELETE) {
+						$out[] = $line;
 					}
-				flock($fp, LOCK_UN);
-				fclose($fp);  
-				
-				
-				//delete saved images
-				array_map('unlink', glob("$imgDirectory/*.*"));
-				rmdir($imgDirectory);
-				
-				echo "Successfully removed " . $itemName ."!";
+					}
+
+					$fp = fopen($itemListPath, "w+");
+					flock($fp, LOCK_EX);
+						foreach($out as $line) {
+						fwrite($fp, $line);
+						}
+					flock($fp, LOCK_UN);
+					fclose($fp);  
+					
+					
+					//delete saved images
+					array_map('unlink', glob("$imgDirectory/*.*"));
+					rmdir($imgDirectory);
+					
+					echo "Successfully removed " . $itemName ."!";
+				}
+				if ($itemExists == false){
+					echo "Error, item doesn't exist.";
+				}
 			}
-			if ($itemExists == false){
-				echo "Error, item doesn't exist.";
-			}
-		
 		}else{
 		echo "No post error.";
 		}
