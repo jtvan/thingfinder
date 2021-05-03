@@ -45,14 +45,19 @@
 				$separatedName = explode(":", $itemName);
 
 				$itemCategory = "\"". trim($separatedName[1]) . "\"";
-				$cameraFeedPath = "\"" . "/mnt/capturephoto/photo.jpg" . "\"";
+				$cameraFeedPath = "\"" . "/media/sf_capturephoto/photo.jpg" . "\"";
 				$prefThreshold = "0.65";
 				$weightPath = "\"" . "/var/www/thingfinder/yolov3.weights".  "\"";
 				$outputPath = "\"" . "/var/www/thingfinder/result.png".  "\"";
 
+				$imageSource = "\"" . "/var/www/thingfinder/pic.jpg".  "\"";
+
+
+				copy("/media/sf_capturephoto/photo.jpg","/var/www/thingfinder/pic.jpg");
+
 				set_time_limit (60 );
 
-				$command = "/usr/bin/python3 /var/www/thingfinder/findObject.py " . $cameraFeedPath . " " . $itemCategory . " " . $prefThreshold . " " . $weightPath. " " .	$outputPath ." 2>&1";
+				$command = "/usr/bin/python3 /var/www/thingfinder/findObject.py " . $imageSource . " " . $itemCategory . " " . $prefThreshold . " " . $weightPath. " " .	$outputPath ." 2>&1";
 
 				exec($command, $out, $status);
 
